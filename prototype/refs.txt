@@ -1,0 +1,23 @@
+images to select list
+https://stackoverflow.com/questions/2965971/how-to-add-images-in-select-list
+
+display check on image
+https://stackoverflow.com/questions/53920359/easiest-way-to-display-a-check-mark-over-image-when-a-checkbox-input-is-selected
+
+pure css html answer
+https://stackoverflow.com/questions/30663562/use-images-like-checkboxes/30663705   
+
+image gallery
+https://www.w3schools.com/css/css_image_gallery.asp
+
+generate list in JS
+https://getbutterfly.com/generate-html-list-from-javascript-array/
+
+STORE FILEPATHS IN DB, NOT IMAGES IN DB ITSELF!
+
+how to limit checked images
+https://stackoverflow.com/questions/8066673/stop-checking-checkboxes-after-a-number-of-checkboxes-have-been-checked-in-jquer
+
+cmd then
+dir /b > files.txt
+for txt file with image names
