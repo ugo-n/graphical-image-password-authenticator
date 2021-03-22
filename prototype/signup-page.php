@@ -3,8 +3,8 @@ include 'common.php';
 pHeader();
 ?>
 
-<form action="signup-confirm.php"
-        method="post"> 
+<form action="create-password.php"
+        method="post">
         
 Create a Username: <input name="username" type = "text" maxlength="12" size="12"/>
 <!--limit username length to make display consistent-->

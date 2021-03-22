@@ -96,12 +96,21 @@ $foodnames = file_get_contents("files.txt");
         
 </script>
 </head>
-<body>
+<body onload="makeLists()">
 <!--display of the page-->
-<button onclick="makeLists()"> show list</button>
 <button onclick="showFood()"> food list</button>
 <button onclick="showTransport()"> transport list</button>
 <button onclick="showAnimal()"> animal list</button>
+
+<form action="create-password.php"
+        method="post">
+        
+Create a Username: <input name="username" type = "text" maxlength="12" size="12"/>
+<!--limit username length to make display consistent-->
+<input type="submit" value="Sign Up"/>
+
+</form>
+
 <div id="image-select-grid">
     <ul id="image-list"> 
         <!--generate list in js of all icons for category-->
