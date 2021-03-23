@@ -39,19 +39,19 @@ $foodnames = file_get_contents("files.txt");
             listElement = document.getElementById('image-list'),
             listItem,
             i,
-            startPath = "",
+            startPath = "icons/",
             type = num;
             //make conditional based on startPath
             switch(type){
-                case 1: startPath = "135541-gastronomy-set/png/";
+                case 1:
                 listElement = document.getElementById('image-list'),
                 listData = foodArray;
                 break;
-                case 2: startPath = "741397-transport/png/";
+                case 2:
                 listElement = document.getElementById('t-image-list'),
                 listData = tranportArray;
                 break;
-                case 3: startPath = "3969721-animals/png/";
+                case 3: 
                 listElement = document.getElementById('a-image-list'),
                 listData = animalArray;
                 break;
@@ -98,20 +98,29 @@ $foodnames = file_get_contents("files.txt");
 </head>
 <body onload="makeLists()">
 <!--display of the page-->
-<button onclick="showFood()"> food list</button>
-<button onclick="showTransport()"> transport list</button>
-<button onclick="showAnimal()"> animal list</button>
+<div id="form-box">
 
 <form action="create-password.php"
         method="post">
         
-Create a Username: <input name="username" type = "text" maxlength="12" size="12"/>
+<h2>Create a Username:</h2>
+<input name="username" type = "text" maxlength="12" size="12"/>
 <!--limit username length to make display consistent-->
-<input type="submit" value="Sign Up"/>
+<input type="submit" name="submit" value="Sign Up" class="sub-btn"/>
 
 </form>
 
+</div>
+
+<div id = "pass-category">
+    <h2>Create a Password:</h2>
+    <button id = "btn" onclick="showFood()"> food list</button>
+    <button id = "btn1" onclick="showTransport()"> transport list</button>
+    <button id = "btn2" onclick="showAnimal()"> animal list</button>
+</div>
+
 <div id="image-select-grid">
+
     <ul id="image-list"> 
         <!--generate list in js of all icons for category-->
     </ul>
@@ -119,6 +128,10 @@ Create a Username: <input name="username" type = "text" maxlength="12" size="12"
     </ul>
     <ul id="t-image-list">
     </ul>
+</div>
+
+<h2>Chosen Images:</h2>
+<div id="password-display">
     <ul id="images-selected">
         <li id = "image-1"></li>
         <li id = "image-2"></li>
@@ -127,7 +140,6 @@ Create a Username: <input name="username" type = "text" maxlength="12" size="12"
         <li id = "image-5"></li>
     </ul>
 </div>
-
 <?php
 pFooter();
 ?>
