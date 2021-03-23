@@ -6,9 +6,6 @@ $foodnames = file_get_contents("files.txt");
     $foodarray = explode("\n", $foodnames);
     $animalarray = explode("\n", $animalnames);
     $transportarray = explode("\n", $transportnames);
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -28,9 +25,6 @@ $foodnames = file_get_contents("files.txt");
         
         var foodArray =  
             <?php echo json_encode($foodarray); ?>; 
-        var animalgrid = document.getElementById("a-image-list");
-        var foodgrid = document.getElementById("image-list");
-        var transportgrid = document.getElementById("t-image-list");
 
         function makeList(num){
             //make list based on start
@@ -98,19 +92,6 @@ $foodnames = file_get_contents("files.txt");
 </head>
 <body onload="makeLists()">
 <!--display of the page-->
-<div id="form-box">
-
-<form action="create-password.php"
-        method="post">
-        
-<h2>Create a Username:</h2>
-<input name="username" type = "text" maxlength="12" size="12"/>
-<!--limit username length to make display consistent-->
-<input type="submit" name="submit" value="Sign Up" class="sub-btn"/>
-
-</form>
-
-</div>
 
 <div id = "pass-category">
     <h2>Create a Password:</h2>
