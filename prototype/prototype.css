@@ -8,6 +8,7 @@ li{
     display: inline-block;
     margin: 2px;
 }
+
 img{
     opacity: .65;
     width: 64px;
@@ -155,7 +156,6 @@ background-color: #3e8e41
     background-color: #3e8e41;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
-    
 }
 
 .index-box{
@@ -171,5 +171,5 @@ background-color: #3e8e41
     height: 432px;
     margin: auto;
     border: 10px solid #006400;
-    background-color: rgba(255,255,255,.5)
+    background-color: rgba(255,255,255,.5);
 }
