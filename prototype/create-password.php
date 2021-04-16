@@ -60,6 +60,10 @@ $foodnames = file_get_contents("files.txt");
 
                 listItem.innerHTML = "<img src='" + startPath + listData[i] + "'>"+ "</img>";
 
+                //set ID attribute to each list container
+                //may conflict, since we have multipe lists yet same IDs possibly
+                listItem.setAttribute("id", i);
+
                 listElement.appendChild(listItem);
             }
         }

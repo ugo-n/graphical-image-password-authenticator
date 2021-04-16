@@ -1058,6 +1058,7 @@ const TRANSPORT_ARR = [
     }
     ];
 
+//May be better if we add imgpath as a field to the json arrays
 //generate a table of images
 function makeList(){
     //make list based on start
@@ -1078,7 +1079,11 @@ function makeList(){
         listItem = document.createElement('li');
 
         listItem.innerHTML = "<img src='" + startPath + listData[i] + "'>"+ "</img>";
-
+        
+        //set ID attribute to each list container
+        //may conflict, since we have multipe lists yet same IDs possibly
+        listItem.setAttribute("id", i);
+        
         listElement.appendChild(listItem);
     }
 }
