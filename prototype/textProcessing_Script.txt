@@ -1,0 +1,56 @@
+
+****************
+**USING PYTHON**
+****************
+
+import os
+current = os.getcwd()
+path = r"path to emotes text files here"
+work = os.path.join(current, path)
+os.chdir(work)
+
+**now you should be in correct directory**
+
+foods = 'files.txt'
+animals = 'animals.txt'
+transport = 'transport.txt'
+load = [foods, animals, transport]
+new = "-arr.txt"
+php = "-php.txt"
+
+**********************************************
+*************FOR JAVASCRIPT ARRAY*************
+**********************************************
+
+//This out puts a text file so you can copy and paste it into js as a json object
+for file in load:
+    f = open(file, 'r')
+    var = file.replace('.txt',"").upper()
+    w = open(var+new, 'w')
+    w.write('const '+var+'_ARR = [\n')
+    lines = f.readlines()
+    for line in lines:
+        w.write('{\n')
+        string = line.replace('.png',"'")
+        w.write("\tname: '"+string)
+        w.write('},\n')
+        #print(string)
+    w.write('];')
+    w.close()
+
+
+**********************************************
+*************FOR PHP ARRAY *******************
+**********************************************
+
+//resulting output is a text file where each line contains the names of the icons (excludes .png)
+for file in load:
+    f = open(file, 'r')
+    var = file.replace('.txt',"").upper()
+    w = open(var+php, 'w')
+    lines = f.readlines()
+    for line in lines:
+        string = line.replace('.png','')
+        w.write(string)
+    w.close()
+    
