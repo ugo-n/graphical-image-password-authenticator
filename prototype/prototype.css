@@ -12,6 +12,8 @@ li{
 img{
     opacity: .65;
     width: 64px;
+    -webkit-user-drag: none;
+    user-select: none;
 }
 
 h2{
@@ -28,13 +30,31 @@ img:hover{
     cursor: pointer;
     background-color: rgba(255,255,255,.65);
 }
+
+#grid-container{
+    position: relative;
+    width: 432px;
+    height: 432px;
+    margin: auto;
+}
 #image-select-grid{
     overflow: auto;
     width: 432px;
     height: 432px;
     margin: auto;
     border: 10px solid #006400;
+
     background-color: rgba(255,255,255,.5)
+}
+
+#instructions{
+    width: 432px;
+    height: 432px;
+    background-color: white ;
+    border: 10px solid #006400;
+    margin: auto;
+    z-index: 10;
+    position: absolute;
 }
 
 form {

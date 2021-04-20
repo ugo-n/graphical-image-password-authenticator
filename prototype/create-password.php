@@ -1,8 +1,8 @@
 <?php
 include 'common.php';
-$foodnames = file_get_contents("files.txt");
-    $animalnames = file_get_contents("animals.txt");
-    $transportnames = file_get_contents("transport.txt");
+$foodnames = file_get_contents("food_names.txt");
+    $animalnames = file_get_contents("animal_names.txt");
+    $transportnames = file_get_contents("transport_names.txt");
     $foodarray = explode("\n", $foodnames);
     $animalarray = explode("\n", $animalnames);
     $transportarray = explode("\n", $transportnames);
@@ -18,6 +18,9 @@ $foodnames = file_get_contents("files.txt");
     <!--needs to be cleaned,,,-->
     <script type="text/javascript">
         var type = 1;
+        var count = 0;
+        var password;
+        var tracker = new Map();
         var animalArray =  
             <?php echo json_encode($animalarray); ?>; 
         var tranportArray =  
@@ -31,7 +34,7 @@ $foodnames = file_get_contents("files.txt");
             var listData,
             listContainer = document.getElementById('image-select-grid'),
             listElement = document.getElementById('image-list'),
-            listItem,
+            listItem,imageItem,
             i,
             startPath = "icons/",
             type = num;
@@ -57,12 +60,16 @@ $foodnames = file_get_contents("files.txt");
 
             for(i = 0; i < numberOfListItems; ++i){
                 listItem = document.createElement('li');
+                imageItem = document.createElement('img');
+                imageItem.setAttribute('src', startPath + listData[i] + ".png");
 
-                listItem.innerHTML = "<img src='" + startPath + listData[i] + "'>"+ "</img>";
+                //listItem.innerHTML = "<img src='" + startPath + listData[i] + ".png'>"+ "</img>";
 
                 //set ID attribute to each list container
                 //may conflict, since we have multipe lists yet same IDs possibly
-                listItem.setAttribute("id", i);
+                imageItem.setAttribute("id", listData[i]);
+                imageItem.setAttribute("class", "pass-choice")
+                listItem.appendChild(imageItem);
 
                 listElement.appendChild(listItem);
             }
@@ -72,9 +79,48 @@ $foodnames = file_get_contents("files.txt");
             makeList(2);
             makeList(1);
             makeList(3);
+
+            var imageSelect = document.getElementById("images-selected").childNodes;
+
+            //create onclick events
+            let imgs = document.querySelectorAll('.pass-choice');
+
+            var selectImg;
+            
+            for (i of imgs) {
+                i.addEventListener('click', function() {
+                    //console.log(imageSelect[count])
+                    //if all images for password have not been selected
+                    if(count <= 4){
+                        //check if this image has already been chosen
+                        if(!tracker.has(this.id)){
+                            //if not chosen yet, select image
+                            tracker.set(this.id);
+                            password += this.id + ",";
+                            selectImg = '<img src = "icons/'+this.id+'.png" class = "'+ this.id + '"</img>';
+                            //imageSelect[count].style.backgroundImage = "url('icons/" + this.id + ".png')";
+                            imageSelect[count].innerHTML = selectImg
+                            count++;
+                        }   
+                    }
+                    console.log(password);
+                });
+            }
         }
         
-
+        function clearIntro(){
+            document.getElementById("instructions").style.display = "none";
+        }
+        function clearSelect(){
+            var imageSelect = document.getElementById("images-selected").childNodes;
+            for(var i = 0; i <= 4; i++){
+                imageSelect[i].innerHTML = "";
+                imageSelect[i].class = "";
+            }
+            tracker.clear();
+            password = "";
+            count = 0;
+        }
         function showAnimal(){
             document.getElementById("a-image-list").style.display = "block";
             document.getElementById("t-image-list").style.display = "none";
@@ -104,26 +150,32 @@ $foodnames = file_get_contents("files.txt");
     <button id = "btn2" onclick="showAnimal()"> animal list</button>
 </div>
 
-<div id="image-select-grid">
+<div id="grid-container">
+    <div id="instructions">
+        <p>Choose 5 images from the different categories to create your password!</p>
+        <p>Choose different categories using the buttons above the grid</p>
+        <p>Clear your selection at any time by pressing the 'clear selection' button</p>
+        <p>Click submit once you're done!</p>
+        <button id = "clear-intro" onclick="clearIntro()"> Clear intro</button>
+    </div>
+    <div id="image-select-grid">
 
-    <ul id="image-list"> 
-        <!--generate list in js of all icons for category-->
-    </ul>
-    <ul id="a-image-list">
-    </ul>
-    <ul id="t-image-list">
-    </ul>
+        <ul id="image-list"> 
+            <!--generate list in js of all icons for category-->
+        </ul>
+        <ul id="a-image-list">
+        </ul>
+        <ul id="t-image-list">
+        </ul>
+
+    </div>
 </div>
 
 <h2>Chosen Images:</h2>
 <div id="password-display">
-    <ul id="images-selected">
-        <li id = "image-1"></li>
-        <li id = "image-2"></li>
-        <li id = "image-3"></li>
-        <li id = "image-4"></li>
-        <li id = "image-5"></li>
-    </ul>
+    <ul id="images-selected"><li id = "image-1"></li><li id = "image-2"></li><li id = "image-3"></li><li id = "image-4"></li><li id = "image-5"></li></ul>
+    <br>
+    <button id = "clear" onclick="clearSelect()"> clear selection </button>
 </div>
 <?php
 pFooter();
