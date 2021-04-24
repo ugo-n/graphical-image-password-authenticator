@@ -8,7 +8,7 @@ if ($conn->connect_error) {
 }
 
 // sql to create table
-$sql = "CREATE TABLE lock_out (
+$sql = "CREATE TABLE IF NOT EXISTS lock_out (
 id INT NOT NULL AUTO_INCREMENT,
 username VARCHAR(16) NOT NULL,
 time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,

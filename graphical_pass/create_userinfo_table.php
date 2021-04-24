@@ -9,7 +9,7 @@ if ($conn->connect_error) {
 }
 
 // sql to create table
-$sql = "CREATE TABLE userinfo (
+$sql = "CREATE TABLE IF NOT EXISTS userinfo (
 username VARCHAR(16)  NOT NULL,
 pass_id1 VARCHAR(30) NOT NULL,
 pass_id2 VARCHAR(30) NOT NULL,

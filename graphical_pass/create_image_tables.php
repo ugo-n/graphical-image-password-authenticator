@@ -16,7 +16,7 @@ if ($conn->connect_error) {
 }
 
 // sql to create table
-$sql = "CREATE TABLE pass_images (
+$sql = "CREATE TABLE IF NOT EXISTS pass_images (
 id INT  NOT NULL AUTO_INCREMENT,
 name VARCHAR(30) NOT NULL,
 type VARCHAR(10) NOT NULL,
