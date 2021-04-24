@@ -35,6 +35,8 @@ if(isset($_GET['err'])){
                 if (!$error == '') {
                         if($error == 1){
                                 echo "This username has already been used";
+                        }else if($error == 2){
+                                echo "This username is too short";
                         }
                 }
         ?>

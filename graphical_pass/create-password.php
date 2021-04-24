@@ -127,6 +127,8 @@ $foodnames = file_get_contents("food_names.txt");
         }
         function clearSelect(){
             var imageSelect = document.getElementById("images-selected").childNodes;
+            var passText = document.getElementById("pass-text").childNodes;
+
             for(var i = 0; i <= 4; i++){
                 imageSelect[i].innerHTML = "";
                 imageSelect[i].class = "";
@@ -195,7 +197,7 @@ $foodnames = file_get_contents("food_names.txt");
 <div>
     <form action="confirm-password.php"
                 method="post"> 
-            <div id="pass-text" style="display:none"><input type="text" id="pass1" name="pass1" style=><input type="text" id="pass2" name="pass2" ><input type="text" id="pass3" name="pass3" ><input type="text" id="pass4" name="pass4" ><input type="text" id="pass5" name="pass5" >
+            <div id="pass-text" style="display:none"><input type="text" id="pass1" name="pass1"><input type="text" id="pass2" name="pass2" ><input type="text" id="pass3" name="pass3" ><input type="text" id="pass4" name="pass4" ><input type="text" id="pass5" name="pass5" >
             </div>
             <input type="submit" value = "create password">
     </form>

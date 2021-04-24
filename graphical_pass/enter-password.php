@@ -17,6 +17,11 @@ if ($conn->connect_error) {
 
 $sql =   $sql ="SELECT * FROM userinfo WHERE username='$username'";
 $result = $conn->query($sql);
+$rowcnt = $result->num_rows;
+if($rowcnt == 0){
+    header('location: login-page.php?err=2');
+    exit();
+}
 $arr;
 if($row = mysqli_fetch_assoc($result)){
     $arr[] = $row['pass_id1'];
@@ -34,7 +39,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     }else if($_POST['submit2']){
         if($_POST['pass1'] == $arr[0] and $_POST['pass2'] == $arr[1] and $_POST['pass3'] == $arr[2] and $_POST['pass4'] == $arr[3] and $_POST['pass5'] == $arr[4]){
-            header('Location: https://www.google.com/');
+            header('Location: login-confirm.php');
             exit();
         }else{
             echo "you didn't do that right";
@@ -108,19 +113,17 @@ print_r($arr);
             for(var k = 0; k < 5; k++){
                 image_bank.set(array[k]);
             }       
-            while(image_bank.size < 36){
+            while(image_bank.size <= 35){
                 var img = getRandomItem(images_array);
-                if(image_bank.has(img)){
-                    continue;
-                }else{
-                    image_bank.set(img)
+                if(!image_bank.has(img)){
+                    image_bank.set(img);
                 }
             }
 
             var image_bank_shuffled = Array.from(image_bank.keys());
+            console.log(image_bank_shuffled);
             image_bank_shuffled = shuffle(image_bank_shuffled);
 
-            <?php //echo json_encode($merged); ?> //getRandom(images_array, 36), 
             var listElement = document.getElementById('enter-list'),
             listItem, imageItem,
             startPath = "icons/",
@@ -230,7 +233,7 @@ print_r($arr);
     </div>
     <form action="enter-password.php"
                 method="post"> 
-            <div id="pass-text" ><input type="text" id="pass1" name="pass1" style=><input type="text" id="pass2" name="pass2" ><input type="text" id="pass3" name="pass3" ><input type="text" id="pass4" name="pass4" ><input type="text" id="pass5" name="pass5" >
+            <div id="pass-text" style="display:none" ><input type="text" id="pass1" name="pass1" style=><input type="text" id="pass2" name="pass2" ><input type="text" id="pass3" name="pass3" ><input type="text" id="pass4" name="pass4" ><input type="text" id="pass5" name="pass5" >
             </div>
         
         <input type="submit" name="submit2" value="Login"/>

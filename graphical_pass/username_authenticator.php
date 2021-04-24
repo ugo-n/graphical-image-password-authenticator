@@ -12,13 +12,15 @@ if ($conn->connect_error) {
 
 // lookup all hints from array if $q is different from ""
 
-if ($username !== "" and strlen($username) >= 3){
+if ($username !== "" /*and strlen($username) >= 3*/){
   $username = strtolower($username);
   $sql ="SELECT * FROM userinfo WHERE username='$username'";
   if ($result = $conn->query($sql)) {
     $row_cnt = mysqli_num_rows($result);
     if($row_cnt != 0){
         header('location: signup-page.php?err=1');
+    }else if(strlen($username) <= 3){
+        header('location: signup-page.php?err=2');
     }else{
         header('location: create-password.php');
     }
