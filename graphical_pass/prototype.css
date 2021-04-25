@@ -1,0 +1,199 @@
+ul {
+    list-style-type: none; /* Remove bullets */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margins */
+}
+li{
+    float: left;
+    display: inline-block;
+    margin: 2px;
+}
+
+img{
+    opacity: .65;
+    width: 64px;
+    -webkit-user-drag: none;
+    user-select: none;
+}
+
+h2{
+    text-align:  center;
+    color: #000080;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-weight: bold; 
+}
+
+img:hover{
+    opacity: 1;
+    width: 64px;
+    cursor: pointer;
+    background-color: rgba(255,255,255,.65);
+}
+
+#grid-container{
+    position: relative;
+    width: 432px;
+    height: 432px;
+    margin: auto;
+}
+#image-select-grid{
+    overflow: auto;
+    width: 432px;
+    height: 432px;
+    margin: auto;
+    border: 10px solid #006400;
+
+    background-color: rgba(255,255,255,.5)
+}
+
+#instructions{
+    width: 432px;
+    height: 432px;
+    background-color: white ;
+    border: 10px solid #006400;
+    margin: auto;
+    z-index: 10;
+    position: absolute;
+}
+
+form {
+    text-align: center;
+}
+#form-box{
+    margin: auto;
+    text-align: center;
+    margin-bottom: 1%;
+}
+
+li#image-1,#image-2, #image-3, #image-4, #image-5{
+    background-color: aliceblue;
+    width: 64px;
+    height: 64px;
+    list-style: none;
+    float: left;
+    display: block;
+    margin-right: 2px;
+    margin-left: 2px;
+}
+
+div#password-display{
+    text-align: center;
+    margin: 0 auto;
+}
+#images-selected{
+    display: inline-block;
+}
+
+#image-list{
+    display: block;
+}
+#a-image-list{
+    display: none;
+}
+#t-image-list{
+    display: none;
+}
+#pass-category{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+body{
+    background: rgb(63,165,251);
+    background: radial-gradient(circle, rgba(63,165,251,1) 0%, rgba(70,252,244,1) 100%);
+    font-family: Candara;
+}
+
+button{
+    font-family: Candara;
+}
+
+input{
+    font-family: Candara;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+
+  
+#btn{
+background-color: #32cd32;
+color: white;
+cursor: pointer;
+font-size: 14px;
+}
+    
+#btn1{
+background-color: #008cba;
+color: white;
+cursor: pointer;
+border-radius: 50%;
+font-size: 14px;
+}
+
+#btn2{
+background-color: #ffd700;
+color: white;
+cursor: pointer;
+border-radius: 8px;
+font-size: 14px;
+}
+
+#sub-btn{
+padding: 15px 25px;
+font-size: 24px;
+cursor: pointer;
+color: white;
+background-color: #ff4500 ;
+border-radius: 15px;
+box-shadow: 0 9px #999;
+
+}
+
+#sub-btn:hover{
+background-color: #3e8e41
+}
+
+#sub-btn:active{
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.index-box{
+    text-align: center;
+    margin-top: 15%;
+    background-color: rgba(255,255,255,.5);
+    padding-bottom: 40px;
+    padding-top: 40px;
+}
+
+#password-enter{
+    width: 432px;
+    height: 432px;
+    margin: auto;
+    border: 10px solid #006400;
+    background-color: rgba(255,255,255,.5);
+}
+#selectCount{
+    margin:auto;
+text-align: center;
+}
