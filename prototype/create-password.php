@@ -1,11 +1,85 @@
 <?php
 include 'common.php';
-$foodnames = file_get_contents("food_names.txt");
-    $animalnames = file_get_contents("animal_names.txt");
-    $transportnames = file_get_contents("transport_names.txt");
+
+    $foodnames = file_get_contents("files.txt");
+    $animalnames = file_get_contents("animals.txt");
+    $transportnames = file_get_contents("transport.txt");
+
     $foodarray = explode("\n", $foodnames);
     $animalarray = explode("\n", $animalnames);
     $transportarray = explode("\n", $transportnames);
+
+
+    $username;
+    $count;
+
+    //password == string of names separated by commas from selected images 
+    $password;
+    //Include the DB config
+    require_once 'database.php';
+
+    //regex for name requirementments
+    //need to add  validation if check
+    $regex = '/^[A-Za-z][A-Za-z0-9]{3,12}';
+
+    if($_SERVER["REQUEST_METHOD"] == "POST") {
+        
+        if(isset($_POST['username'])) {
+            // Checking if username already exists 
+            $username = strtolower($_POST['username']);
+            $sql = 'SELECT * FROM users WHERE username = :username';
+            // Prepare a select statement
+            $stmt = $conn->prepare($sql);
+
+            //Bind variables to the prepared statement as parameters
+            $stmt->bindParam(':username', $username);
+            $stmt->execute();
+
+            $rows = $stmt->rowCount();
+            
+            //if the username is available 
+            //and the user has selected 5 images
+            // if($rows != 1 && $count == 5) {
+            //     unset($stmt);
+            //     $sql = 'INSERT INTO users (username, password) VALUES
+            //     (:username, :password)';
+            //     $stmt = $conn->prepare($sql);
+
+            //     $stmt->bindParam(':username', $username);
+            //     $stmt->bindParam(':password', $password);
+
+            //     if($stmt->execute()){
+            //         header("location: signup-confirm.php");
+            //         unset($stmt);
+            //         unset($conn);
+            //     }
+            // }
+            if($rows == 1 && $count < 5) {
+                echo 'username already exists \n please select 5 images';
+                unset($stmt);
+            }else if($rows != 1  && $count < 5) {
+                echo 'username is available but please select 5 images';
+                unset($stmt);
+            }else if($rows == 1 && $count == 5) {
+                echo 'username already exists';
+                unset($stmt);
+            }else {
+                //username available and 5 images selected
+                unset($stmt);
+                $sql = 'INSERT INTO users (username, password) VALUES
+                (:username, :password)';
+                $stmt = $conn->prepare($sql);
+
+                $stmt->bindParam(':username', $username);
+                $stmt->bindParam(':password', $password);
+
+                if($stmt->execute()){
+                    header("location: signup-confirm.php");
+                    unset($stmt);
+                    unset($conn);
+            }
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +87,6 @@ $foodnames = file_get_contents("food_names.txt");
 <head>
     <title>Password Prototype</title>
     <link rel="stylesheet" href="prototype.css">
-
     <!--script for generating images-->
     <!--needs to be cleaned,,,-->
     <script type="text/javascript">
@@ -67,9 +140,8 @@ $foodnames = file_get_contents("food_names.txt");
 
                 //set ID attribute to each list container
                 //may conflict, since we have multipe lists yet same IDs possibly
-                imageItem.setAttribute("id", listData[i]);
-                imageItem.setAttribute("class", "pass-choice")
-                listItem.appendChild(imageItem);
+                listItem.setAttribute("id", i);
+                
 
                 listElement.appendChild(listItem);
             }
@@ -138,10 +210,28 @@ $foodnames = file_get_contents("food_names.txt");
         }
 
         
-</script>
+    </script>
 </head>
 <body onload="makeLists()">
 <!--display of the page-->
+
+
+
+<!-- TESTING  -->
+<div class="index-box">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+        Create a Username: 
+        <input type="text" name="username" maxlength="12" size="12"
+        placeholder='3-12 characters letters and numbers only'
+        pattern = '/^[A-Za-z][A-Za-z0-9]{3,12}'
+        required/>
+        <!--limit username length to make display consistent-->
+        <input type="submit" value="Sign Up"/>
+     </form>
+</div>
+<!-- TESTING  -->
+
+
 
 <div id = "pass-category">
     <h2>Create a Password:</h2>
@@ -171,6 +261,7 @@ $foodnames = file_get_contents("food_names.txt");
     </div>
 </div>
 
+<!-- need to keep count of number of selected images -->
 <h2>Chosen Images:</h2>
 <div id="password-display">
     <ul id="images-selected"><li id = "image-1"></li><li id = "image-2"></li><li id = "image-3"></li><li id = "image-4"></li><li id = "image-5"></li></ul>

@@ -2,6 +2,9 @@
 include 'common.php';
 include 'db_controller.php';
 session_start();
+
+error_reporting(E_ALL ^ E_WARNING);
+
 if(isset($_POST['submit1'])){
     $_SESSION["username"] = $_POST['username'];
 }
@@ -33,7 +36,8 @@ if($row = mysqli_fetch_assoc($result)){
 
 $conn->close();
 
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
+/*if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
     
     if(isset($_POST['submit1'])){
 
@@ -45,7 +49,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             echo "you didn't do that right";
         }
     }
-}
+
+}*/
+
 
 
 $foodnames = file_get_contents("food_names.txt");
@@ -143,7 +149,7 @@ print_r($arr);
 
             let imgs = document.querySelectorAll('.images');
             var passText = document.getElementById("pass-text").childNodes;
-
+			document.getElementById("selectCount").innerHTML="0/5";
             for (i of imgs) {
                 i.addEventListener('click', function() {
                     //console.log(imageSelect[count])
@@ -157,6 +163,10 @@ print_r($arr);
                             console.log( passText[count].value);
                             this.style.opacity = 0;
                             count++;
+
+							document.getElementById("selectCount").innerHTML=count+"/5";
+							
+						
                         }   
                     }
                     console.log(password);
@@ -176,6 +186,8 @@ print_r($arr);
                 passText[i].value = "";
             }
             count = 0;
+			document.getElementById("selectCount").innerHTML="0/5";
+
         }
         function getRandomItem(arr){
              // get random index value
@@ -203,6 +215,8 @@ print_r($arr);
 
         return array;
         }
+
+
         //code referenced from Bergi
         //link: https://stackoverflow.com/questions/19269545/how-to-get-a-number-of-random-elements-from-an-array
         /*function getRandom(arr, n) {
@@ -229,7 +243,8 @@ print_r($arr);
     <ul id="enter-list"> 
         <!--generate list of random icons-->
     </ul>
-    <button id = "clear" onclick="clearSelect()"> clear selection </button>
+	<button id = "clear" onclick="clearSelect()"> Clear Selection </button>
+
     </div>
     <form action="enter-password.php"
                 method="post"> 
@@ -237,8 +252,23 @@ print_r($arr);
             </div>
         
         <input type="submit" name="submit2" value="Login"/>
-
+		<p >Images selected: </p><p id="selectCount"></p>
     </form>
+	
+	
+	<h2><?php 
+		if($_SERVER['REQUEST_METHOD'] == 'POST' ){
+			if($_POST['submit2']){
+				if($_POST['pass1'] == $arr[0] and $_POST['pass2'] == $arr[1] and $_POST['pass3'] == $arr[2] and $_POST['pass4'] == $arr[3] and $_POST['pass5'] == $arr[4]){
+					header('Location: login-confirm.php');
+					exit();
+				}else{
+				echo "Incorrect Password<br>Please Try Again";
+				}
+			}	
+		}
+		?>
+	</h2>
 </body>
 <?php
 pFooter();

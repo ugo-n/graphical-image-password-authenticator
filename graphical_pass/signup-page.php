@@ -13,7 +13,9 @@ if(isset($_GET['err'])){
 <script>
         function showHint(str) {
         if (str.length == 0) {
-        document.getElementById("txtHint").innerHTML = "";
+          
+       document.getElementById("txtHint").innerHTML = "";
+
         return;
         } else {
         var xmlhttp = new XMLHttpRequest();
@@ -31,15 +33,20 @@ if(isset($_GET['err'])){
 <body>
 
 <div class="index-box">
-        <?php  
+
+		
+		<?php  
                 if (!$error == '') {
                         if($error == 1){
-                                echo "This username has already been used";
+								echo '<span style="color:red">This username has already been used</span>';
                         }else if($error == 2){
-                                echo "This username is too short";
+								echo '<span style="color:red">This username is too short</span>';
                         }
                 }
         ?>
+		
+		<br><br>
+
         <form action="username_authenticator.php"
                 method="post"> 
                 
@@ -47,7 +54,9 @@ if(isset($_GET['err'])){
         <!--limit username length to make display consistent-->
         <input type="submit" value="Signup"/>
         </form>
-        <p> <span id="txtHint"></span></p>
+			
+        <p> <span id="txtHint">Must be 3-16 characters long</span></p>
+
 </div>
 </body>
 </html>

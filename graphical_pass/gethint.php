@@ -24,10 +24,10 @@ if ($q !== "" and strlen($q) >= 3){
   if ($result = $conn->query($sql)) {
     $row_cnt = mysqli_num_rows($result);
     if($row_cnt != 0){
-        $hint = "username is not available";
+        $hint = "Username is not available";
         $result->close();
     }else{
-        $hint = "username is available!";
+        $hint = "Username is available!";
     }
     //echo "username has already been used";
     
@@ -41,5 +41,7 @@ if ($q !== "" and strlen($q) >= 3){
 $conn->close();
 
 // Output "no suggestion" if no hint was found or output correct values
-echo $hint === "" ? "too short" : $hint;
+
+echo $hint === "" ? "Username is too short" : $hint;
+
 ?>
