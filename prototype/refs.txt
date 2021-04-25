@@ -18,6 +18,9 @@ STORE FILEPATHS IN DB, NOT IMAGES IN DB ITSELF!
 how to limit checked images
 https://stackoverflow.com/questions/8066673/stop-checking-checkboxes-after-a-number-of-checkboxes-have-been-checked-in-jquer
 
+retrieve img src through javascript
+https://stackoverflow.com/questions/7882356/javascript-get-img-src-and-set-as-variable
+
 cmd then
 dir /b > files.txt
 for txt file with image names

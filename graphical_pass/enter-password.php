@@ -2,7 +2,9 @@
 include 'common.php';
 include 'db_controller.php';
 session_start();
+
 error_reporting(E_ALL ^ E_WARNING);
+
 if(isset($_POST['submit1'])){
     $_SESSION["username"] = $_POST['username'];
 }
@@ -35,6 +37,7 @@ if($row = mysqli_fetch_assoc($result)){
 $conn->close();
 
 /*if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
     
     if(isset($_POST['submit1'])){
 
@@ -46,7 +49,9 @@ $conn->close();
             echo "you didn't do that right";
         }
     }
+
 }*/
+
 
 
 $foodnames = file_get_contents("food_names.txt");
@@ -158,10 +163,10 @@ print_r($arr);
                             console.log( passText[count].value);
                             this.style.opacity = 0;
                             count++;
+
 							document.getElementById("selectCount").innerHTML=count+"/5";
 							
 						
-							
                         }   
                     }
                     console.log(password);
@@ -182,6 +187,7 @@ print_r($arr);
             }
             count = 0;
 			document.getElementById("selectCount").innerHTML="0/5";
+
         }
         function getRandomItem(arr){
              // get random index value
@@ -209,7 +215,8 @@ print_r($arr);
 
         return array;
         }
-	
+
+
         //code referenced from Bergi
         //link: https://stackoverflow.com/questions/19269545/how-to-get-a-number-of-random-elements-from-an-array
         /*function getRandom(arr, n) {
@@ -237,6 +244,7 @@ print_r($arr);
         <!--generate list of random icons-->
     </ul>
 	<button id = "clear" onclick="clearSelect()"> Clear Selection </button>
+
     </div>
     <form action="enter-password.php"
                 method="post"> 

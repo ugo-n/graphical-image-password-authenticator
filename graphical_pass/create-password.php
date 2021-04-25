@@ -192,6 +192,7 @@ $foodnames = file_get_contents("food_names.txt");
 <div id="password-display">
     <ul id="images-selected"><li id = "image-1"></li><li id = "image-2"></li><li id = "image-3"></li><li id = "image-4"></li><li id = "image-5"></li></ul>
     <br>
+
     <button id = "clear" onclick="clearSelect()"> Clear Selection </button>
 </div>
 <div>

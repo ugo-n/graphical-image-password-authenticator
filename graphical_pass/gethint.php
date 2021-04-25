@@ -41,5 +41,7 @@ if ($q !== "" and strlen($q) >= 3){
 $conn->close();
 
 // Output "no suggestion" if no hint was found or output correct values
+
 echo $hint === "" ? "Username is too short" : $hint;
+
 ?>

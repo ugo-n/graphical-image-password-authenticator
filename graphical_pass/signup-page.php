@@ -13,7 +13,9 @@ if(isset($_GET['err'])){
 <script>
         function showHint(str) {
         if (str.length == 0) {
+          
        document.getElementById("txtHint").innerHTML = "";
+
         return;
         } else {
         var xmlhttp = new XMLHttpRequest();
@@ -31,6 +33,7 @@ if(isset($_GET['err'])){
 <body>
 
 <div class="index-box">
+
 		
 		<?php  
                 if (!$error == '') {
@@ -43,6 +46,7 @@ if(isset($_GET['err'])){
         ?>
 		
 		<br><br>
+
         <form action="username_authenticator.php"
                 method="post"> 
                 
@@ -52,6 +56,7 @@ if(isset($_GET['err'])){
         </form>
 			
         <p> <span id="txtHint">Must be 3-16 characters long</span></p>
+
 </div>
 </body>
 </html>
