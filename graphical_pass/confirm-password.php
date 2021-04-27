@@ -11,6 +11,11 @@ $pass3 = $_POST['pass3'];
 $pass4 = $_POST['pass4'];
 $pass5 = $_POST['pass5'];
 
+if(strlen($pass1) == 0 or strlen($pass2) == 0 or strlen($pass3) == 0 or strlen($pass4) == 0 or strlen($pass5) == 0 ){
+  header('location: create-password.php?err=1');
+  exit();
+}
+
 $conn = new mysqli($db_server, $db_username, $db_password, $db_name);
 // Check connection
 if ($conn->connect_error) {

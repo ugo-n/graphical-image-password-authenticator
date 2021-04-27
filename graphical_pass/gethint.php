@@ -32,7 +32,7 @@ if ($q !== "" and strlen($q) >= 3){
     //echo "username has already been used";
     
   } else {
-    echo "Error creating table: " . $conn->error;
+    echo "Error: " . $conn->error;
  }
  $row_cnt = 0;
   

@@ -3,8 +3,15 @@ include 'common.php';
 include 'db_controller.php';
 session_start();
 
-
-$foodnames = file_get_contents("food_names.txt");
+    $error='';
+    if(isset($_GET['err'])){
+        $error="You didn't choose enough images";
+        //$error = $_GET['err'];
+    }
+    if($error == 1){
+        
+    }
+    $foodnames = file_get_contents("food_names.txt");
     $animalnames = file_get_contents("animal_names.txt");
     $transportnames = file_get_contents("transport_names.txt");
 
@@ -200,8 +207,9 @@ $foodnames = file_get_contents("food_names.txt");
                 method="post"> 
             <div id="pass-text" style="display:none"><input type="text" id="pass1" name="pass1"><input type="text" id="pass2" name="pass2" ><input type="text" id="pass3" name="pass3" ><input type="text" id="pass4" name="pass4" ><input type="text" id="pass5" name="pass5" >
             </div>
-            <input type="submit" value = "create password">
+            <input type="submit" value = "Create Password">
     </form>
+    <h2><?php echo $error; ?></h2>
 </div>
 <?php
 pFooter();

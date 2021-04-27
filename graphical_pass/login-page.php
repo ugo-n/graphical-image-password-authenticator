@@ -1,3 +1,9 @@
+<?php
+$error = "";
+if(isset($_GET['err'])){
+        $error = $_GET['err'];
+}
+?>
 <!DOCTYPE html>
 <html lang = "en">
 <head>
@@ -7,6 +13,15 @@
 
 
 <div class="index-box">
+        <?php  
+                if (!$error == '') {
+                        if($error == 2){
+                                echo "<span style='color:red'>This user does not exist</span> <br><br>";
+                        }elseif($error == 1){
+                                echo "<span style='color:red'>Please enter a valid username</span> <br><br>";
+                        }
+                }
+        ?>
 
         <form action="enter-password.php"
                 method="post"> 

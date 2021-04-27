@@ -19,8 +19,10 @@ if ($username !== "" /*and strlen($username) >= 3*/){
     $row_cnt = mysqli_num_rows($result);
     if($row_cnt != 0){
         header('location: signup-page.php?err=1');
+        session_unset();
     }else if(strlen($username) <= 3){
         header('location: signup-page.php?err=2');
+        session_unset();
     }else{
         header('location: create-password.php');
     }

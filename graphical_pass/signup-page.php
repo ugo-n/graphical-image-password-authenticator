@@ -32,19 +32,16 @@ if(isset($_GET['err'])){
 </head>
 <body>
 
-<div class="index-box">
-
-		
+<div class="index-box">		
 		<?php  
                 if (!$error == '') {
                         if($error == 1){
-								echo '<span style="color:red">This username has already been used</span>';
+				echo '<span style="color:red">This username has already been used</span>';
                         }else if($error == 2){
-								echo '<span style="color:red">This username is too short</span>';
+				echo '<span style="color:red">This username is too short</span>';
                         }
                 }
-        ?>
-		
+        ?>	
 		<br><br>
 
         <form action="username_authenticator.php"

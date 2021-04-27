@@ -6,9 +6,15 @@ session_start();
 error_reporting(E_ALL ^ E_WARNING);
 
 if(isset($_POST['submit1'])){
+    if(empty($_POST['username']) or strlen($_POST['username']) < 3){
+        header('location: login-page.php?err=1');
+        session_unset();
+        session_destroy();
+        exit();
+    }
     $_SESSION["username"] = $_POST['username'];
 }
-
+$error='';
 $username = $_SESSION['username'];
 
 
@@ -23,6 +29,8 @@ $result = $conn->query($sql);
 $rowcnt = $result->num_rows;
 if($rowcnt == 0){
     header('location: login-page.php?err=2');
+    session_unset();
+    session_destroy();
     exit();
 }
 $arr;
@@ -36,7 +44,7 @@ if($row = mysqli_fetch_assoc($result)){
 
 $conn->close();
 
-/*if($_SERVER['REQUEST_METHOD'] == 'POST'){
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     
     if(isset($_POST['submit1'])){
@@ -46,11 +54,11 @@ $conn->close();
             header('Location: login-confirm.php');
             exit();
         }else{
-            echo "you didn't do that right";
+            $error="Incorrect Password<br>Please Try Again";
         }
     }
 
-}*/
+}
 
 
 
@@ -252,21 +260,14 @@ print_r($arr);
             </div>
         
         <input type="submit" name="submit2" value="Login"/>
+        <div id='index-box'>
 		<p >Images selected: </p><p id="selectCount"></p>
+        </div>
     </form>
 	
 	
 	<h2><?php 
-		if($_SERVER['REQUEST_METHOD'] == 'POST' ){
-			if($_POST['submit2']){
-				if($_POST['pass1'] == $arr[0] and $_POST['pass2'] == $arr[1] and $_POST['pass3'] == $arr[2] and $_POST['pass4'] == $arr[3] and $_POST['pass5'] == $arr[4]){
-					header('Location: login-confirm.php');
-					exit();
-				}else{
-				echo "Incorrect Password<br>Please Try Again";
-				}
-			}	
-		}
+        echo $error;
 		?>
 	</h2>
 </body>
